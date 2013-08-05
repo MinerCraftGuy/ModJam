@@ -54,7 +54,7 @@ public class PotionCauldron extends BlockCauldron
 			}
 			else if (thePlayer.dimension != ModJam.magicDimID)
 			{
-				thePlayer.timeUntilPortal = 10;
+				thePlayer.timeUntilPortal = 2000;
 				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, ModJam.magicDimID, new MagicWorldTeleporter(thePlayer.mcServer.worldServerForDimension(ModJam.magicDimID)));
 			}
 			else

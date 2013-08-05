@@ -7,14 +7,14 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class MagicStructureGenerator implements IWorldGenerator
+public class WorldGenStructures implements IWorldGenerator
 {
 	final int width = 30;
 	final int height = 20;
 	final int length = 30;
 	
-	WorldGenerator well = new WorldGenMagicWell();
-	WorldGenerator castle = new WorldGenCastle();
+	WorldGenerator well = new StructureWell();
+	WorldGenerator castle = new StructureCastle();
 	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
@@ -43,8 +43,6 @@ public class MagicStructureGenerator implements IWorldGenerator
 				int randPosY = world.getHeightValue(randPosX, randPosZ);
 				
 				castle.generate(world, random, randPosX, randPosY, randPosZ);
-				
-				System.out.println(randPosX + ", " + randPosY + ", " + randPosZ);
 			}
 		}
 	}

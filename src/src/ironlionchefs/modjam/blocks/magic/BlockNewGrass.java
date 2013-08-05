@@ -8,12 +8,32 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 public class BlockNewGrass extends Block
 {
+	@Override
+	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
+	{
+		if (par5Entity instanceof EntityClientPlayerMP && par5Entity.dimension == ModJam.magicDimID)
+		{
+			((EntityClientPlayerMP) par5Entity).addPotionEffect(new PotionEffect(8, 1, 1));
+			((EntityClientPlayerMP) par5Entity).addPotionEffect(new PotionEffect(1, 1, 1));
+			((EntityClientPlayerMP) par5Entity).addPotionEffect(new PotionEffect(5, 1, 1));
+			((EntityClientPlayerMP) par5Entity).addPotionEffect(new PotionEffect(23, 1, 1));
+		}
+		
+		super.onEntityWalking(par1World, par2, par3, par4, par5Entity);
+	}
+
 	@SideOnly(Side.CLIENT)
 	private Icon field_94422_a;
 	@SideOnly(Side.CLIENT)

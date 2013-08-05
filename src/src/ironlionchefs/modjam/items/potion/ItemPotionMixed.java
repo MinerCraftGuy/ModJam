@@ -1,5 +1,7 @@
 package ironlionchefs.modjam.items.potion;
 
+import ironlionchefs.modjam.src.ColorCode;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -42,7 +44,18 @@ public class ItemPotionMixed extends ItemFood
 				
 				if (pe1 != null && pe1.getEffectName() != null)
 				{
-					par3List.add((I18n.func_135053_a(pe1.getEffectName())));
+					if (pe1.getEffectName().contains("heal") || pe1.getEffectName().contains("harm"))
+					{
+						Integer amp = pe1.getAmplifier();
+						par3List.add(ColorCode.GOLD + (I18n.func_135053_a(pe1.getEffectName())) + ColorCode.WHITE + " " + amp.toString().replace("1", "I").replace("2", "II"));
+					}
+					else
+					{
+						Integer dur = pe1.getDuration() / 20;
+						Integer minutes = dur / 60;
+						Integer seconds = dur % 60;
+						par3List.add(ColorCode.GOLD + (I18n.func_135053_a(pe1.getEffectName())) + ColorCode.WHITE + " (" + minutes.toString() + ":" + String.format("%02d", seconds) + ")");
+					}
 				}
 			}
 		}
@@ -55,7 +68,18 @@ public class ItemPotionMixed extends ItemFood
 				
 				if (pe1 != null && pe1.getEffectName() != null)
 				{
-					par3List.add((I18n.func_135053_a(pe1.getEffectName())));
+					if (pe1.getEffectName().contains("heal") || pe1.getEffectName().contains("harm"))
+					{
+						Integer amp = pe1.getAmplifier();
+						par3List.add(ColorCode.GOLD + (I18n.func_135053_a(pe1.getEffectName())) + ColorCode.WHITE + " " + amp.toString().replace("1", "I").replace("2", "II"));
+					}
+					else
+					{
+						Integer dur = pe1.getDuration() / 20;
+						Integer minutes = dur / 60;
+						Integer seconds = dur % 60;
+						par3List.add(ColorCode.GOLD + (I18n.func_135053_a(pe1.getEffectName())) + ColorCode.WHITE + " (" + minutes.toString() + ":" + String.format("%02d", seconds) + ")");
+					}
 				}
 			}
 		}
@@ -68,7 +92,19 @@ public class ItemPotionMixed extends ItemFood
 				
 				if (pe1 != null && pe1.getEffectName() != null)
 				{
-					par3List.add((I18n.func_135053_a(pe1.getEffectName())));
+					if (pe1.getEffectName().contains("heal") || pe1.getEffectName().contains("harm"))
+					{
+						Integer amp = pe1.getAmplifier();
+						par3List.add(ColorCode.GOLD + (I18n.func_135053_a(pe1.getEffectName())) + ColorCode.WHITE + " " + amp.toString().replace("1", "I").replace("2", "II"));
+					}
+					else
+					{
+						Integer dur = pe1.getDuration() / 20;
+						Integer minutes = dur / 60;
+						Integer seconds = dur % 60;
+						par3List.add(ColorCode.GOLD + (I18n.func_135053_a(pe1.getEffectName())) + ColorCode.WHITE + " (" + minutes.toString() + ":" + String.format("%02d", seconds) + ")");
+						System.out.println(pe1.getAmplifier());
+					}
 				}
 			}
 		}

@@ -5,6 +5,7 @@ import ironlionchefs.modjam.blocks.cauldron.TileEntityCauldron;
 import ironlionchefs.modjam.blocks.essence.BlockHighEssence;
 import ironlionchefs.modjam.blocks.essence.BlockLowEssence;
 import ironlionchefs.modjam.blocks.essence.BlockMedEssence;
+import ironlionchefs.modjam.blocks.magic.BlockLeavesMagic;
 import ironlionchefs.modjam.blocks.magic.BlockNewGrass;
 import ironlionchefs.modjam.blocks.ore.OreEssenceHighOverworld;
 import ironlionchefs.modjam.blocks.ore.OreEssenceLowOverworld;
@@ -53,11 +54,11 @@ import ironlionchefs.modjam.items.pendants.parts.ItemPendantPieceGold;
 import ironlionchefs.modjam.items.pendants.parts.ItemPendantPieceIron;
 import ironlionchefs.modjam.items.pendants.parts.ItemPendantPieceStone;
 import ironlionchefs.modjam.items.potion.ItemPotionMixed;
-import ironlionchefs.modjam.world.generator.magic.BiomeGeneratorMagicWorld;
+import ironlionchefs.modjam.world.generator.magic.BiomeMagic;
 import ironlionchefs.modjam.world.generator.magic.MagicHighOreGenerator;
 import ironlionchefs.modjam.world.generator.magic.MagicLowOreGenerator;
 import ironlionchefs.modjam.world.generator.magic.MagicMedOreGenerator;
-import ironlionchefs.modjam.world.generator.magic.MagicStructureGenerator;
+import ironlionchefs.modjam.world.generator.magic.WorldGenStructures;
 import ironlionchefs.modjam.world.generator.overworld.EssenceHighOreOverworldGenerator;
 import ironlionchefs.modjam.world.generator.overworld.EssenceLowOreOverworldGenerator;
 import ironlionchefs.modjam.world.generator.overworld.EssenceMedOreOverworldGenerator;
@@ -71,6 +72,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
@@ -160,12 +163,14 @@ public class ModJam
 	public static Block lowEssenceBlock = new BlockLowEssence(4078);
 	public static Block medEssenceBlock = new BlockMedEssence(4079);
 	public static Block highEssenceBlock = new BlockHighEssence(4080);
+	
+	public static Block magicLeaves = new BlockLeavesMagic(4081);
 	//Render IDs
 	public static int potionCauldronRenderID = RenderingRegistry.getNextAvailableRenderId();
 	int count = 0;
 
-	public static final int magicDimID = 45;
-	public static final BiomeGenBase baseMagicWorldBiome = new BiomeGeneratorMagicWorld(25);
+	public final static int magicDimID = 45;
+	public static final BiomeGenBase baseMagicWorldBiome = new BiomeMagic(25);
 	
 	public CreativeTabs tabModJamGeneral = new CreativeTabs("ModJam")
 	{
@@ -404,12 +409,13 @@ public class ModJam
 		registerObject(highEssenceBlock, this.tabModJamGeneral, "High Essence Block");
 		
 		registerObject(blockNewDimGrass, this.tabModJamGeneral, "Grass");
-	
+		registerObject(magicLeaves, this.tabModJamGeneral, "Leaves");
+		
 		GameRegistry.registerTileEntity(TileEntityCauldron.class, "TileEntityCauldron");
 		
 		DimensionManager.registerProviderType(ModJam.magicDimID, WorldProviderMagicWorld.class, true);
 		DimensionManager.registerDimension(ModJam.magicDimID, ModJam.magicDimID);
-		GameRegistry.registerWorldGenerator(new MagicStructureGenerator());
+		GameRegistry.registerWorldGenerator(new WorldGenStructures());
 		GameRegistry.registerWorldGenerator(new MagicHighOreGenerator());
 		GameRegistry.registerWorldGenerator(new MagicMedOreGenerator());
 		GameRegistry.registerWorldGenerator(new MagicLowOreGenerator());

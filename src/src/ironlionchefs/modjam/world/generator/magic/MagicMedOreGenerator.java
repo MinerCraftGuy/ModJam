@@ -20,7 +20,6 @@ public class MagicMedOreGenerator implements IWorldGenerator
 			int randPosX = chunkX + random.nextInt(16);
 			int randPosY = random.nextInt(64);
 			int randPosZ = chunkZ + random.nextInt(16);
-			System.out.println(randPosX + ", " + randPosY + ", " + randPosZ);
 			new WorldGenMinable(ModJam.essenceMedOreOverworld.blockID, 8).generate(world, random, randPosX, randPosY, randPosZ);
 		}
 	}

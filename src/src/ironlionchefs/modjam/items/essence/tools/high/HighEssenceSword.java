@@ -1,6 +1,6 @@
 package ironlionchefs.modjam.items.essence.tools.high;
 
-import ironlionchefs.modjam.world.generator.magic.WorldGenCastle;
+import ironlionchefs.modjam.world.generator.magic.StructureCastle;
 
 import java.util.Random;
 
@@ -29,7 +29,7 @@ public class HighEssenceSword extends ItemSword
 	
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
 	{
-		new WorldGenCastle().generate(par3World, itemRand, par4, par5, par6);
+		new StructureCastle().generate(par3World, itemRand, par4, par5, par6);
 		
 		return true;
 	}
